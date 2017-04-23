@@ -27,6 +27,5 @@ class HomeNewsModel: BaseModel {
     
     override init(_ dic:Dictionary<String, Any>) {
         super.init(dic)
-        self.has_mp4_video = false
     }
 }

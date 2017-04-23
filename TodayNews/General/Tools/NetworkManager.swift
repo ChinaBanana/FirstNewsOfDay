@@ -3,7 +3,7 @@
 //  TodayNews
 //
 //  Created by Coco Wu on 2017/4/17.
-//  Copyright © 2017年 cyt. All rights reserved.
+//  Copyright © 2017 cyt. All rights reserved.
 //
 
 import UIKit
@@ -41,7 +41,15 @@ class NetworkManager: NSObject {
                                  "category": category,
                                  "iid": IID,]
         Alamofire.request(urlBase + urlHomeList, parameters: parame).validate(statusCode: 200...300).responseJSON { (response) in
-            debugPrint(response)
+            if let dataValue = response.result.value{
+                let dicRoot = JSON(dataValue)
+                let dataArr = dicRoot["data"].arrayObject
+                print(dataArr!)
+                
+//                for case item in dataArr! where item.class == Dictionary {
+//                    
+//                }
+            }
         }
     }
     
