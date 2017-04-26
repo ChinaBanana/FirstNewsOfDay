@@ -14,6 +14,8 @@ class HomeViewController: BaseTableViewController {
     let textIdentifer:String = "pureTextCellIdentifer"
     let adPicIdentifer:String = "adPicCellIdentifer"
     
+    var dataArray:Array = [HomeNewsModel]()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -22,7 +24,9 @@ class HomeViewController: BaseTableViewController {
         })
         
         NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
-            
+            /// debugPrint(modelArr)
+            self.dataArray.append(contentsOf: modelArr)
+            self.tableView.reloadData()
         }
         
         self.tableView.register(HomePicsCell.self, forCellReuseIdentifier:mainIdentifer)
@@ -35,9 +39,18 @@ class HomeViewController: BaseTableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataArray.count;
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: mainIdentifer, for: indexPath)
-        
+        let model:HomeNewsModel = self.dataArray[indexPath.row]
+        let cell:HomePicsCell = tableView.dequeueReusableCell(withIdentifier: mainIdentifer, for: indexPath) as! HomePicsCell
+        cell.configCellContentWith(model)
         return cell
     }
     

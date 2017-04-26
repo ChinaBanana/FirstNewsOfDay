@@ -19,35 +19,90 @@ class HomePicsCell: BaseTableViewCell {
         self.contentView.addSubview(leftImageView)
         self.contentView.addSubview(centerImageView)
         self.contentView.addSubview(rightImageView)
+        self.updateConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configCellContentWith(_ model:HomeNewsModel) -> () {
+        let size = CGSize.init(width: screen_width - 40, height: screen_height)
+        let dic:Dictionary<String, NSObject> = [NSFontAttributeName:titleLabel.font]
+        let title_size = model.title!.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic, context: nil).size
+        
+        titleLabel.snp.updateConstraints { (make) in
+            make.height.equalTo(title_size.height)
+        }
+        
+        titleLabel.text = model.title
+        debugPrint(model.image_list ?? "No image list")
+        if (model.image_list?.count)! > 0 {
+            let leftImage:ImageModel? = model.image_list?.first
+            let centerImage:ImageModel? = model.image_list?[1]
+            let rightImage:ImageModel? = model.image_list?[2]
+            
+            leftImageView.kf.setImage(with:URL.init(string: (leftImage?.url)!))
+            centerImageView.kf.setImage(with: URL.init(string: (centerImage?.url)!))
+            rightImageView.kf.setImage(with: URL.init(string: (rightImage?.url)!))
+        }else{
+            leftImageView.image = nil
+            centerImageView.image = nil
+            rightImageView.image = nil
+        }
+    }
+    
+    override func updateConstraints() {
+        
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.top.equalTo(10)
+            make.right.equalTo(-10)
+            make.height.equalTo(30)
+        }
+        
+        leftImageView.snp.makeConstraints { (make) in
+            make.left.equalTo(titleLabel.snp.left)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.width.equalTo(imageWidth)
+            make.height.equalTo(75)
+        }
+        
+        centerImageView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(leftImageView)
+            make.centerX.equalTo(self.contentView)
+            make.centerY.equalTo(leftImageView)
+        }
+        
+        rightImageView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(leftImageView)
+            make.centerY.equalTo(leftImageView)
+            make.right.equalTo(self.contentView).offset(-10)
+        }
+        super.updateConstraints()
+    }
+    
     lazy var titleLabel : UILabel = {
-        let label = UILabel.init(frame: CGRect.init(x: 10, y: 12, width: screen_width - 20, height: 50))
+        let label = UILabel()
         label.numberOfLines = 2
-        label.text = "土豆别炒丝了，这种做法比土豆丝好吃百倍，你试试！"
         return label
     }()
     
     lazy var leftImageView : UIImageView = {
-        let imageView = UIImageView.init(frame: CGRect.init(x: 10, y: 62, width: imageWidth, height: 75))
-        imageView.backgroundColor = UIColor.purple
+        let imageView = UIImageView()
+        imageView.backgroundColor = main_color()
         return imageView;
     }()
     
     lazy var centerImageView : UIImageView = {
-        let imageView = UIImageView.init(frame: CGRect.init(x: 0, y: 62, width: imageWidth, height: 75))
+        let imageView = UIImageView()
         imageView.center = CGPoint.init(x: screen_width / 2, y: imageView.center.y)
-        imageView.backgroundColor = UIColor.purple
+        imageView.backgroundColor = main_color()
         return imageView;
     }()
     
     lazy var rightImageView : UIImageView = {
-        let imageView = UIImageView.init(frame: CGRect.init(x: screen_width - 10 - imageWidth, y: 62, width: imageWidth, height: 75))
-        imageView.backgroundColor = UIColor.purple
+        let imageView = UIImageView()
+        imageView.backgroundColor = main_color()
         return imageView;
     }()
 }

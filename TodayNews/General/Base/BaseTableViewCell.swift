@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SnapKit
 
 class BaseTableViewCell: UITableViewCell {
 
