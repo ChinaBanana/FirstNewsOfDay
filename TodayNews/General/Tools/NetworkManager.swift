@@ -24,6 +24,9 @@ class NetworkManager: NSObject {
                                  "iid": IID] as [String : Any]
         
         Alamofire.request(urlBase + urlHomeCategraies, parameters: parame).validate(statusCode: 200...300).responseJSON { (response) in
+            
+            let result = response.result
+            
             if let dataValue = response.result.value{
                 let dicRoot = JSON(dataValue)
                 let dataDic = dicRoot["data"].dictionary
@@ -35,6 +38,10 @@ class NetworkManager: NSObject {
                 }
                 finished(modelArr)
             }
+        }
+        
+        Alamofire.request(url(urlHomeList)).responseJSON{ (response) in
+            
         }
     }
     
@@ -68,5 +75,9 @@ class NetworkManager: NSObject {
         let data:Data = convertStr.data(using: String.Encoding.utf8)!
         let contentDic = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
         return contentDic as! NSDictionary
+    }
+    
+    func url(_ subUrl:String) -> String {
+        return urlBase + subUrl;
     }
 }
