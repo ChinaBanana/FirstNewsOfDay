@@ -19,19 +19,22 @@ class HomeViewController: BaseTableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        NetworkManager.requestHomeCategraies({ modelArr in
-            
-        })
+//        NetworkManager.requestHomeCategraies({ modelArr in
+//            debugPrint(modelArr)
+//        })
         
-        NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
-            /// debugPrint(modelArr)
-            self.dataArray.append(contentsOf: modelArr)
-            self.tableView.reloadData()
-        }
+//        NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
+//            self.dataArray.append(contentsOf: modelArr)
+//            self.tableView.reloadData()
+//        }
+        
+        //self.tableView.rowHeight = UITableViewAutomaticDimension
+        //self.tableView.estimatedRowHeight = 170
         
         self.tableView.register(HomePicsCell.self, forCellReuseIdentifier:mainIdentifer)
-        self.tableView.register(HomePureTextCell.self, forCellReuseIdentifier:textIdentifer)
-        self.tableView.register(HomeADPicCell.self, forCellReuseIdentifier: adPicIdentifer)
+        //self.tableView.register(HomePureTextCell.self, forCellReuseIdentifier:textIdentifer)
+        //self.tableView.register(HomeADPicCell.self, forCellReuseIdentifier: adPicIdentifer)
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,11 +47,11 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataArray.count;
+        return self.testArray.count;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model:HomeNewsModel = self.dataArray[indexPath.row]
+        let model:HomeNewsModel = self.testArray[indexPath.row] as! HomeNewsModel
         let cell:HomePicsCell = tableView.dequeueReusableCell(withIdentifier: mainIdentifer, for: indexPath) as! HomePicsCell
         cell.configCellContentWith(model)
         return cell
@@ -57,4 +60,12 @@ class HomeViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
     }
+    
+    lazy var testArray:NSArray = {
+        var modelArr = [HomeNewsModel]()
+        for index in 0...5{
+            modelArr.append(HomeNewsModel())
+        }
+        return modelArr as NSArray
+    }()
 }

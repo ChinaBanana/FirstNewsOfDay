@@ -68,6 +68,14 @@ class HomeNewsModel: BaseModel {
     var show_portrait:Bool?
     var show_portrait_article:Bool?
     
+    override init() {
+        super.init()
+        let titleArr:NSArray = ["swift 学习","swift 学习问题亟待解决，速度papapa，键盘敲起来","swift 学习问题亟待解决，速度papapa，键盘敲起来lailailai"]
+        let num = arc4random()
+        self.title = titleArr[Int(num) % 3] as? String
+        self.image_list = [ImageModel(),ImageModel(),ImageModel()]
+    }
+    
     override init(_ dic:Dictionary<String, Any>) {
         super.init(dic)
         

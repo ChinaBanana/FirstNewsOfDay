@@ -10,8 +10,8 @@ import UIKit
 
 let imageWidth:CGFloat = (screen_width - 32) / 3
 
-class HomePicsCell: BaseTableViewCell {
-
+class HomePicsCell: BaseTableViewCell{
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = UITableViewCellSelectionStyle.none
@@ -27,16 +27,15 @@ class HomePicsCell: BaseTableViewCell {
     }
     
     func configCellContentWith(_ model:HomeNewsModel) -> () {
-        let size = CGSize.init(width: screen_width - 40, height: screen_height)
-        let dic:Dictionary<String, NSObject> = [NSFontAttributeName:titleLabel.font]
-        let title_size = model.title!.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic, context: nil).size
+        
+        let title_height = model.title!.caculateHeightBy([NSFontAttributeName:titleLabel.font], limitsize: CGSize.init(width: screen_width - 20, height: screen_height))
         
         titleLabel.snp.updateConstraints { (make) in
-            make.height.equalTo(title_size.height)
+            make.height.equalTo(title_height)
         }
         
         titleLabel.text = model.title
-        debugPrint(model.image_list ?? "No image list")
+       
         if (model.image_list?.count)! > 0 {
             let leftImage:ImageModel? = model.image_list?.first
             let centerImage:ImageModel? = model.image_list?[1]
@@ -52,12 +51,17 @@ class HomePicsCell: BaseTableViewCell {
         }
     }
     
+    func heightForModel(_ model:HomeNewsModel) -> CGFloat {
+        self.configCellContentWith(model)
+        return self.leftImageView.frame.origin.y + self.leftImageView.frame.size.height
+    }
+    
     override func updateConstraints() {
         
         titleLabel.snp.makeConstraints { (make) in
-            make.left.top.equalTo(10)
-            make.right.equalTo(-10)
-            make.height.equalTo(30)
+            make.left.top.equalTo(self.contentView).offset(10)
+            make.right.equalTo(self.contentView).offset(-10)
+            make.height.equalTo(25)
         }
         
         leftImageView.snp.makeConstraints { (make) in

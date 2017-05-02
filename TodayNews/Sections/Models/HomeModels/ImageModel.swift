@@ -15,6 +15,11 @@ class ImageModel: BaseModel {
     var url:String?
     var uri:String?
     
+    override init() {
+        super.init()
+        self.url = "http://p3.pstatp.com/list/300x196/1dbb00035732fadd366f"
+    }
+    
     override init(_ dic: Dictionary<String, Any>) {
         super.init(dic)
         height = dic["height"] as? Int

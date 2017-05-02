@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import SnapKit
+import FDTemplateLayoutCell
 
 class BaseTableViewCell: UITableViewCell {
 

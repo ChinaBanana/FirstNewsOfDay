@@ -25,23 +25,19 @@ class NetworkManager: NSObject {
         
         Alamofire.request(urlBase + urlHomeCategraies, parameters: parame).validate(statusCode: 200...300).responseJSON { (response) in
             
-            let result = response.result
-            
-            if let dataValue = response.result.value{
-                let dicRoot = JSON(dataValue)
-                let dataDic = dicRoot["data"].dictionary
-                let dataArr = dataDic?["data"]?.arrayObject
-                
+            switch response.result{
+            case .success(let value):
+                let rootDic = JSON.init(value)
+                let dataArr = rootDic["data"]["data"].arrayObject
+
                 var modelArr = [HomeCategraiesModel]()
                 for elem in dataArr!{
                     modelArr.append(HomeCategraiesModel.init(elem as! Dictionary<String, Any>))
                 }
                 finished(modelArr)
+            case .failure(let error):
+                debugPrint(error)
             }
-        }
-        
-        Alamofire.request(url(urlHomeList)).responseJSON{ (response) in
-            
         }
     }
     
