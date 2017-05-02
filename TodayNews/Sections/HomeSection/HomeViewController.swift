@@ -32,6 +32,7 @@ class HomeViewController: BaseTableViewController {
         //self.tableView.estimatedRowHeight = 170
         
         self.tableView.register(HomePicsCell.self, forCellReuseIdentifier:mainIdentifer)
+        self.tableView.fd_debugLogEnabled = true
         //self.tableView.register(HomePureTextCell.self, forCellReuseIdentifier:textIdentifer)
         //self.tableView.register(HomeADPicCell.self, forCellReuseIdentifier: adPicIdentifer)
         self.tableView.reloadData()
@@ -58,7 +59,10 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return tableView.fd_heightForCell(with: mainIdentifer, cacheBy: indexPath, configuration: { (cell) in
+            let homeCell = cell as! HomePicsCell
+            homeCell.configCellContentWith(self.testArray[indexPath.row] as! HomeNewsModel)
+        })
     }
     
     lazy var testArray:NSArray = {

@@ -27,7 +27,6 @@ class HomePicsCell: BaseTableViewCell{
     }
     
     func configCellContentWith(_ model:HomeNewsModel) -> () {
-        
         let title_height = model.title!.caculateHeightBy([NSFontAttributeName:titleLabel.font], limitsize: CGSize.init(width: screen_width - 20, height: screen_height))
         
         titleLabel.snp.updateConstraints { (make) in
@@ -83,6 +82,14 @@ class HomePicsCell: BaseTableViewCell{
             make.right.equalTo(self.contentView).offset(-10)
         }
         super.updateConstraints()
+    }
+    
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        var totalHeight:CGFloat = 0
+        totalHeight += titleLabel.sizeThatFits(size).height
+        totalHeight += leftImageView.sizeThatFits(size).height
+        totalHeight += 30
+        return CGSize.init(width: size.width, height: totalHeight)
     }
     
     lazy var titleLabel : UILabel = {
