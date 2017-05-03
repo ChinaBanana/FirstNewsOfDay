@@ -50,35 +50,29 @@ class HomePicsCell: BaseTableViewCell{
         }
     }
     
-    func heightForModel(_ model:HomeNewsModel) -> CGFloat {
-        self.configCellContentWith(model)
-        return self.leftImageView.frame.origin.y + self.leftImageView.frame.size.height
-    }
-    
     override func updateConstraints() {
         
         titleLabel.snp.makeConstraints { (make) in
             make.left.top.equalTo(self.contentView).offset(10)
             make.right.equalTo(self.contentView).offset(-10)
-            make.bottom.equalTo(leftImageView.snp.top).offset(-10)
+            make.height.equalTo(10)
         }
         
         leftImageView.snp.makeConstraints { (make) in
             make.left.equalTo(titleLabel.snp.left)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.height.equalTo(75)
-            make.leading.equalTo(self.contentView)
             make.width.equalTo(imageWidth)
-            make.bottom.equalTo(self.contentView).offset(-10)
         }
         
         centerImageView.snp.makeConstraints { (make) in
-            make.width.height.equalTo(leftImageView)
+            make.size.equalTo(leftImageView)
             make.centerX.equalTo(self.contentView)
             make.centerY.equalTo(leftImageView)
         }
         
         rightImageView.snp.makeConstraints { (make) in
-            make.width.height.equalTo(leftImageView)
+            make.size.equalTo(leftImageView)
             make.centerY.equalTo(leftImageView)
             make.right.equalTo(self.contentView).offset(-10)
         }

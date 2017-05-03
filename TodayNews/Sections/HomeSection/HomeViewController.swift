@@ -19,14 +19,14 @@ class HomeViewController: BaseTableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-//        NetworkManager.requestHomeCategraies({ modelArr in
-//            debugPrint(modelArr)
-//        })
+        NetworkManager.requestHomeCategraies({ modelArr in
+            debugPrint(modelArr)
+        })
         
-//        NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
-//            self.dataArray.append(contentsOf: modelArr)
-//            self.tableView.reloadData()
-//        }
+        NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
+            self.dataArray.append(contentsOf: modelArr)
+            self.tableView.reloadData()
+        }
         
         //self.tableView.rowHeight = UITableViewAutomaticDimension
         //self.tableView.estimatedRowHeight = 170
@@ -48,21 +48,22 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.testArray.count;
+        return self.dataArray.count;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model:HomeNewsModel = self.testArray[indexPath.row] as! HomeNewsModel
+        let model:HomeNewsModel = self.dataArray[indexPath.row]
         let cell:HomePicsCell = tableView.dequeueReusableCell(withIdentifier: mainIdentifer, for: indexPath) as! HomePicsCell
         cell.configCellContentWith(model)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.fd_heightForCell(with: mainIdentifer, cacheBy: indexPath, configuration: { (cell) in
-            let homeCell = cell as! HomePicsCell
-            homeCell.configCellContentWith(self.testArray[indexPath.row] as! HomeNewsModel)
-        })
+        return 170
+//        return tableView.fd_heightForCell(with: mainIdentifer, cacheBy: indexPath, configuration: { (cell) in
+//            let homeCell = cell as! HomePicsCell
+//            homeCell.configCellContentWith(self.dataArray[indexPath.row])
+//        })
     }
     
     lazy var testArray:NSArray = {

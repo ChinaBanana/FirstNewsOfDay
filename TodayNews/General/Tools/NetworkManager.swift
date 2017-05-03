@@ -41,7 +41,6 @@ class NetworkManager: NSObject {
         }
     }
     
-    
     /// 首页根据类型来获取列表
     ///
     /// - Parameters:
