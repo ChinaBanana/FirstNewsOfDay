@@ -60,14 +60,15 @@ class HomePicsCell: BaseTableViewCell{
         titleLabel.snp.makeConstraints { (make) in
             make.left.top.equalTo(self.contentView).offset(10)
             make.right.equalTo(self.contentView).offset(-10)
-            make.height.equalTo(25)
+            make.bottom.equalTo(leftImageView.snp.top).offset(-10)
         }
         
         leftImageView.snp.makeConstraints { (make) in
             make.left.equalTo(titleLabel.snp.left)
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.width.equalTo(imageWidth)
             make.height.equalTo(75)
+            make.leading.equalTo(self.contentView)
+            make.width.equalTo(imageWidth)
+            make.bottom.equalTo(self.contentView).offset(-10)
         }
         
         centerImageView.snp.makeConstraints { (make) in
@@ -81,6 +82,7 @@ class HomePicsCell: BaseTableViewCell{
             make.centerY.equalTo(leftImageView)
             make.right.equalTo(self.contentView).offset(-10)
         }
+        
         super.updateConstraints()
     }
     
