@@ -27,14 +27,14 @@ class HomePicsCell: BaseTableViewCell{
     }
     
     func configCellContentWith(_ model:HomeNewsModel) -> () {
-        let title_height = model.title!.caculateHeightBy([NSFontAttributeName:titleLabel.font], limitsize: CGSize.init(width: screen_width - 20, height: screen_height))
-        
-        titleLabel.snp.updateConstraints { (make) in
-            make.height.equalTo(title_height)
-        }
+        self.fd_usingFrameLayout = true
         
         titleLabel.text = model.title
        
+        leftImageView.image = nil
+        centerImageView.image = nil
+        rightImageView.image = nil
+        
         if (model.image_list?.count)! > 0 {
             let leftImage:ImageModel? = model.image_list?.first
             let centerImage:ImageModel? = model.image_list?[1]
@@ -43,38 +43,33 @@ class HomePicsCell: BaseTableViewCell{
             leftImageView.kf.setImage(with:URL.init(string: (leftImage?.url)!))
             centerImageView.kf.setImage(with: URL.init(string: (centerImage?.url)!))
             rightImageView.kf.setImage(with: URL.init(string: (rightImage?.url)!))
-        }else{
-            leftImageView.image = nil
-            centerImageView.image = nil
-            rightImageView.image = nil
         }
     }
     
     override func updateConstraints() {
         
         titleLabel.snp.makeConstraints { (make) in
-            make.left.top.equalTo(self.contentView).offset(10)
-            make.right.equalTo(self.contentView).offset(-10)
-            make.height.equalTo(10)
+            make.left.top.equalTo(10)
+            make.right.equalTo(-10)
         }
         
         leftImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(titleLabel.snp.left)
+            make.left.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.height.equalTo(75)
             make.width.equalTo(imageWidth)
+            make.height.equalTo(75)
         }
         
         centerImageView.snp.makeConstraints { (make) in
             make.size.equalTo(leftImageView)
             make.centerX.equalTo(self.contentView)
-            make.centerY.equalTo(leftImageView)
+            make.top.equalTo(leftImageView)
         }
         
         rightImageView.snp.makeConstraints { (make) in
             make.size.equalTo(leftImageView)
-            make.centerY.equalTo(leftImageView)
-            make.right.equalTo(self.contentView).offset(-10)
+            make.top.equalTo(leftImageView)
+            make.right.equalTo(-10)
         }
         
         super.updateConstraints()
@@ -83,7 +78,7 @@ class HomePicsCell: BaseTableViewCell{
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var totalHeight:CGFloat = 0
         totalHeight += titleLabel.sizeThatFits(size).height
-        totalHeight += leftImageView.sizeThatFits(size).height
+        totalHeight += 75
         totalHeight += 30
         return CGSize.init(width: size.width, height: totalHeight)
     }

@@ -19,10 +19,10 @@ class HomeViewController: BaseTableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        NetworkManager.requestHomeCategraies({ modelArr in
-            debugPrint(modelArr)
-        })
-        
+//        NetworkManager.requestHomeCategraies({ modelArr in
+//            debugPrint(modelArr)
+//        })
+//        
         NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
             self.dataArray.append(contentsOf: modelArr)
             self.tableView.reloadData()
@@ -52,23 +52,25 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        /// let model:HomeNewsModel = self.testArray[indexPath.row] as! HomeNewsModel
         let model:HomeNewsModel = self.dataArray[indexPath.row]
+        
         let cell:HomePicsCell = tableView.dequeueReusableCell(withIdentifier: mainIdentifer, for: indexPath) as! HomePicsCell
         cell.configCellContentWith(model)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
-//        return tableView.fd_heightForCell(with: mainIdentifer, cacheBy: indexPath, configuration: { (cell) in
-//            let homeCell = cell as! HomePicsCell
-//            homeCell.configCellContentWith(self.dataArray[indexPath.row])
-//        })
+     //   return 170
+        return tableView.fd_heightForCell(with: mainIdentifer, cacheBy: indexPath, configuration: { (cell) in
+            let homeCell = cell as! HomePicsCell
+            homeCell.configCellContentWith(self.dataArray[indexPath.row])
+        })
     }
     
     lazy var testArray:NSArray = {
         var modelArr = [HomeNewsModel]()
-        for index in 0...5{
+        for index in 0 ..< 5{
             modelArr.append(HomeNewsModel())
         }
         return modelArr as NSArray
