@@ -19,17 +19,14 @@ class HomeViewController: BaseTableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-//        NetworkManager.requestHomeCategraies({ modelArr in
-//            debugPrint(modelArr)
-//        })
-//        
+        NetworkManager.requestHomeCategraies({ modelArr in
+            debugPrint(modelArr)
+        })
+        
         NetworkManager.requestHomeListOfCategary("news_hot") { modelArr in
             self.dataArray.append(contentsOf: modelArr)
             self.tableView.reloadData()
         }
-        
-        //self.tableView.rowHeight = UITableViewAutomaticDimension
-        //self.tableView.estimatedRowHeight = 170
         
         self.tableView.register(HomePicsCell.self, forCellReuseIdentifier:mainIdentifer)
         self.tableView.fd_debugLogEnabled = true
@@ -52,7 +49,7 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /// let model:HomeNewsModel = self.testArray[indexPath.row] as! HomeNewsModel
+//        let model:HomeNewsModel = self.testArray[indexPath.row] as! HomeNewsModel
         let model:HomeNewsModel = self.dataArray[indexPath.row]
         
         let cell:HomePicsCell = tableView.dequeueReusableCell(withIdentifier: mainIdentifer, for: indexPath) as! HomePicsCell
@@ -70,7 +67,7 @@ class HomeViewController: BaseTableViewController {
     
     lazy var testArray:NSArray = {
         var modelArr = [HomeNewsModel]()
-        for index in 0 ..< 5{
+        for index in 0 ..< 20{
             modelArr.append(HomeNewsModel())
         }
         return modelArr as NSArray

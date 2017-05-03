@@ -15,6 +15,7 @@ class HomePicsCell: BaseTableViewCell{
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.fd_usingFrameLayout = true
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(leftImageView)
         self.contentView.addSubview(centerImageView)
@@ -27,14 +28,11 @@ class HomePicsCell: BaseTableViewCell{
     }
     
     func configCellContentWith(_ model:HomeNewsModel) -> () {
-        self.fd_usingFrameLayout = true
-        
         titleLabel.text = model.title
        
         leftImageView.image = nil
         centerImageView.image = nil
         rightImageView.image = nil
-        
         if (model.image_list?.count)! > 0 {
             let leftImage:ImageModel? = model.image_list?.first
             let centerImage:ImageModel? = model.image_list?[1]
@@ -77,9 +75,9 @@ class HomePicsCell: BaseTableViewCell{
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var totalHeight:CGFloat = 0
-        totalHeight += titleLabel.sizeThatFits(size).height
-        totalHeight += 75
-        totalHeight += 30
+        totalHeight += titleLabel.sizeThatFits(size).height // 需要帮我计算出title的高度使用这个方法
+        totalHeight += 75 // 自定义高度，直接+
+        totalHeight += 30 // margin
         return CGSize.init(width: size.width, height: totalHeight)
     }
     
