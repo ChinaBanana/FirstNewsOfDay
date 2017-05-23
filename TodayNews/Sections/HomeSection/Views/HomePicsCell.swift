@@ -47,12 +47,11 @@ class HomePicsCell: BaseTableViewCell{
     override func updateConstraints() {
         
         titleLabel.snp.makeConstraints { (make) in
-            make.left.top.equalTo(10)
-            make.right.equalTo(-10)
+            make.leading.trailing.top.equalTo(10)
         }
         
         leftImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(titleLabel)
+            make.leading.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.width.equalTo(imageWidth)
             make.height.equalTo(75)

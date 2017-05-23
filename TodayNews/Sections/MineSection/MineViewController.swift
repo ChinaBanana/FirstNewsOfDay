@@ -14,8 +14,10 @@ class MineViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifer)
-        
+        self.tableView.tableHeaderView = tableTitleView
+        self.tableView.contentInset = UIEdgeInsets.init(top: -22, left: 0, bottom: 0, right: 0)
         // Do any additional setup after loading the view.
     }
 
@@ -29,15 +31,23 @@ class MineViewController: BaseTableViewController {
         cell.textLabel?.text = "Mine section:\(indexPath.section) row:\(indexPath.row)"
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @objc fileprivate func logInBtnClicked(_ sender:UIButton) -> () {
+        let logInCon = LogInViewController()
+        UIApplication.shared.keyWindow?.rootViewController?.present(logInCon, animated: true, completion: { 
+            
+        })
     }
-    */
+
+    lazy var tableTitleView:UIView = {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screen_width, height: 180))
+        view.backgroundColor = UIColor.black
+        view.alpha = 0.8
+        let logInBtn = UIButton.init(frame: CGRect.init(x: 0, y: 130, width: screen_width, height: 50))
+        logInBtn.addTarget(self, action: #selector(logInBtnClicked), for: UIControlEvents.touchUpInside)
+        logInBtn.setTitle("更多登录方式", for: UIControlState.normal)
+        view.addSubview(logInBtn)
+        return view
+    }()
 
 }

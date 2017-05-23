@@ -19,6 +19,7 @@
 		853BE5E51EA4924900D081EF /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BE5E41EA4924900D081EF /* VideoViewController.swift */; };
 		853BE5E71EA4926D00D081EF /* TNTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BE5E61EA4926D00D081EF /* TNTabBarController.swift */; };
 		853BE5EA1EA4AF1700D081EF /* Marco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BE5E91EA4AF1700D081EF /* Marco.swift */; };
+		858758A51ED27B800071C1CE /* DelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858758A41ED27B800071C1CE /* DelegateTest.swift */; };
 		85916A6F1EA4BDE60043FE79 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85916A6E1EA4BDE60043FE79 /* NetworkManager.swift */; };
 		85916F5A1EA84C170043FE79 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85916F591EA84C170043FE79 /* BaseObject.swift */; };
 		85916F5C1EA84C2A0043FE79 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85916F5B1EA84C2A0043FE79 /* BaseModel.swift */; };
@@ -27,6 +28,10 @@
 		85916F671EA86D290043FE79 /* HomePureTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85916F661EA86D290043FE79 /* HomePureTextCell.swift */; };
 		85916F691EA86D4B0043FE79 /* HomeADPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85916F681EA86D4B0043FE79 /* HomeADPicCell.swift */; };
 		85916F6C1EA9C9CE0043FE79 /* HomePicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85916F6B1EA9C9CE0043FE79 /* HomePicsCell.swift */; };
+		85A564561ED3F42A00115FB3 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A564551ED3F42A00115FB3 /* LogInViewController.swift */; };
+		85A564581ED3F44900115FB3 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A564571ED3F44900115FB3 /* LogInViewModel.swift */; };
+		85A5645A1ED3F46200115FB3 /* LogInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A564591ED3F46200115FB3 /* LogInService.swift */; };
+		85A5645C1ED4003900115FB3 /* LogInModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A5645B1ED4003900115FB3 /* LogInModels.swift */; };
 		85B2BC391EA48D7B00C0941B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B2BC381EA48D7B00C0941B /* AppDelegate.swift */; };
 		85B2BC401EA48D7B00C0941B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B2BC3F1EA48D7B00C0941B /* Assets.xcassets */; };
 		85B2BC431EA48D7B00C0941B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85B2BC411EA48D7B00C0941B /* LaunchScreen.storyboard */; };
@@ -64,6 +69,7 @@
 		853BE5E41EA4924900D081EF /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		853BE5E61EA4926D00D081EF /* TNTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TNTabBarController.swift; sourceTree = "<group>"; };
 		853BE5E91EA4AF1700D081EF /* Marco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marco.swift; sourceTree = "<group>"; };
+		858758A41ED27B800071C1CE /* DelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateTest.swift; sourceTree = "<group>"; };
 		85916A6E1EA4BDE60043FE79 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		85916F591EA84C170043FE79 /* BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		85916F5B1EA84C2A0043FE79 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
@@ -72,6 +78,10 @@
 		85916F661EA86D290043FE79 /* HomePureTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePureTextCell.swift; sourceTree = "<group>"; };
 		85916F681EA86D4B0043FE79 /* HomeADPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeADPicCell.swift; sourceTree = "<group>"; };
 		85916F6B1EA9C9CE0043FE79 /* HomePicsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePicsCell.swift; sourceTree = "<group>"; };
+		85A564551ED3F42A00115FB3 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		85A564571ED3F44900115FB3 /* LogInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		85A564591ED3F46200115FB3 /* LogInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInService.swift; sourceTree = "<group>"; };
+		85A5645B1ED4003900115FB3 /* LogInModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInModels.swift; sourceTree = "<group>"; };
 		85B2BC351EA48D7B00C0941B /* TodayNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85B2BC381EA48D7B00C0941B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85B2BC3F1EA48D7B00C0941B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				85916F581EA84BF00043FE79 /* Models */,
+				85A564541ED3F42A00115FB3 /* LogInSection */,
 				853BE5D91EA491EF00D081EF /* HomeSection */,
 				853BE5D81EA491EF00D081EF /* FocusSection */,
 				853BE5DA1EA491EF00D081EF /* MineSection */,
@@ -194,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				853BE5DE1EA4922D00D081EF /* HomeViewController.swift */,
+				858758A41ED27B800071C1CE /* DelegateTest.swift */,
 				85916F5F1EA86B810043FE79 /* Views */,
 			);
 			path = HomeSection;
@@ -243,6 +255,17 @@
 				85916F6B1EA9C9CE0043FE79 /* HomePicsCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		85A564541ED3F42A00115FB3 /* LogInSection */ = {
+			isa = PBXGroup;
+			children = (
+				85A564551ED3F42A00115FB3 /* LogInViewController.swift */,
+				85A564571ED3F44900115FB3 /* LogInViewModel.swift */,
+				85A564591ED3F46200115FB3 /* LogInService.swift */,
+				85A5645B1ED4003900115FB3 /* LogInModels.swift */,
+			);
+			path = LogInSection;
 			sourceTree = "<group>";
 		};
 		85B2BC2C1EA48D7B00C0941B = {
@@ -536,10 +559,13 @@
 				85B2BC391EA48D7B00C0941B /* AppDelegate.swift in Sources */,
 				853BE5D61EA48F8500D081EF /* TNNavigationController.swift in Sources */,
 				85916F6C1EA9C9CE0043FE79 /* HomePicsCell.swift in Sources */,
+				85A564581ED3F44900115FB3 /* LogInViewModel.swift in Sources */,
 				852C51E51EADC0BA00739F62 /* HomeCategraiesModel.swift in Sources */,
+				85A5645A1ED3F46200115FB3 /* LogInService.swift in Sources */,
 				85916F671EA86D290043FE79 /* HomePureTextCell.swift in Sources */,
 				853BE5E51EA4924900D081EF /* VideoViewController.swift in Sources */,
 				85916F691EA86D4B0043FE79 /* HomeADPicCell.swift in Sources */,
+				858758A51ED27B800071C1CE /* DelegateTest.swift in Sources */,
 				85916F5C1EA84C2A0043FE79 /* BaseModel.swift in Sources */,
 				852C51E61EADC0BA00739F62 /* HomeNewsModel.swift in Sources */,
 				853BE5DD1EA4920900D081EF /* BaseTableViewController.swift in Sources */,
@@ -548,7 +574,9 @@
 				85916F5A1EA84C170043FE79 /* BaseObject.swift in Sources */,
 				853BE5E31EA4923F00D081EF /* MineViewController.swift in Sources */,
 				853BE5E11EA4923800D081EF /* FocusViewController.swift in Sources */,
+				85A5645C1ED4003900115FB3 /* LogInModels.swift in Sources */,
 				853BE5EA1EA4AF1700D081EF /* Marco.swift in Sources */,
+				85A564561ED3F42A00115FB3 /* LogInViewController.swift in Sources */,
 				85B2BC6C1EA48DD200C0941B /* BaseViewController.swift in Sources */,
 				85916F611EA86BA10043FE79 /* BaseView.swift in Sources */,
 				853BE5DF1EA4922D00D081EF /* HomeViewController.swift in Sources */,
