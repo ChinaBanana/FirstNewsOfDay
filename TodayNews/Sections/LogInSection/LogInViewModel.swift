@@ -15,13 +15,14 @@ class LogInViewModel: BaseObject {
     var loginResult:LogInResult?
     
     static let logInSubject = PublishSubject<LogInModel>()
+    static let logInResultSubject = PublishSubject<LogInResult>()
     
     override init() {
         super.init()
         
         /// 订阅登录结果
         LogInService.logInResultSubject.subscribe(onNext: { (resultModel) in
-            self.loginResult = resultModel
+            LogInViewModel.logInResultSubject.onNext(resultModel)
         }, onError: { (error) in
             
         }, onCompleted: { 

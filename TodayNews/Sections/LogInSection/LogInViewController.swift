@@ -18,21 +18,14 @@ class LogInViewController: BaseViewController {
     let disposeBag = DisposeBag()
     let loadingView = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /// 测试binding功能
-//        let obserable = UIBindingObserver<UILabel, Any>.init(UIElement: resultLabel) { (resultLabel, model) in
-//            
-//        }
-        let accountValid = accountTF.rx.text.orEmpty
-        
-        accountValid.subscribe { (str) in
-            print(String.init(describing: str))
+        /// 绑定订阅结果，此处应该有更优雅的方法
+        LogInViewModel.logInResultSubject.subscribe { (event) in
+            self.loadingView.stopAnimating()
+            self.dismissBtnClicked(self.dismissBtn)
         }.addDisposableTo(disposeBag)
-        
         
         self.loadingView.center = backView.center
         self.view.backgroundColor = UIColor.black
