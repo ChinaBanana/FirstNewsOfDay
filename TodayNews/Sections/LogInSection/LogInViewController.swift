@@ -22,16 +22,17 @@ class LogInViewController: BaseViewController {
         super.viewDidLoad()
         
         /// 绑定订阅结果，此处应该有更优雅的方法
-        LogInViewModel.logInResultSubject.subscribe { (event) in
+        viewModel.logInResultSubject.subscribe { (event) in
+            // 登录成功后dismiss ViewController
             self.loadingView.stopAnimating()
             self.dismissBtnClicked(self.dismissBtn)
         }.addDisposableTo(disposeBag)
+        
         
         self.loadingView.center = backView.center
         self.view.backgroundColor = UIColor.black
         self.view.addSubview(backView)
         self.view.addSubview(self.loadingView)
-        self.view.addSubview(resultLabel)
         self.backView.addSubview(dismissBtn)
         self.backView.addSubview(titleLabel)
         self.backView.addSubview(accountView)
@@ -161,11 +162,5 @@ class LogInViewController: BaseViewController {
         view.setTitle("进入头条", for: UIControlState.normal)
         view.addTarget(self , action: #selector(logInBtnClickec(_:)), for: UIControlEvents.touchUpInside)
         return view
-    }()
-    
-    lazy var resultLabel:UILabel = {
-        let label = UILabel.init()
-        label.textAlignment = NSTextAlignment.center
-        return label
     }()
 }

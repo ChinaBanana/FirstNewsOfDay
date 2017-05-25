@@ -8,21 +8,22 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
-class LogInViewModel: BaseObject {
+class LogInViewModel {
     
     let disposeBag = DisposeBag()
-    var loginResult:LogInResult?
+    let logInResultSubject = PublishSubject<LogInResult>()
+    
+    //let loginDriver:Driver<LogInResult>
     
     static let logInSubject = PublishSubject<LogInModel>()
-    static let logInResultSubject = PublishSubject<LogInResult>()
     
-    override init() {
-        super.init()
-        
+    
+    init() {
         /// 订阅登录结果
         LogInService.logInResultSubject.subscribe(onNext: { (resultModel) in
-            LogInViewModel.logInResultSubject.onNext(resultModel)
+            self.logInResultSubject.onNext(resultModel)
         }, onError: { (error) in
             
         }, onCompleted: { 
