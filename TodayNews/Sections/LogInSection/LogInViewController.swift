@@ -22,11 +22,11 @@ class LogInViewController: BaseViewController {
         super.viewDidLoad()
         
         /// 绑定订阅结果，此处应该有更优雅的方法
-        viewModel.logInResultSubject.subscribe { (event) in
-            // 登录成功后dismiss ViewController
-            self.loadingView.stopAnimating()
-            self.dismissBtnClicked(self.dismissBtn)
-        }.addDisposableTo(disposeBag)
+//        viewModel.logInResultSubject.subscribe { (event) in
+//            // 登录成功后dismiss ViewController
+//            self.loadingView.stopAnimating()
+//            self.dismissBtnClicked(self.dismissBtn)
+//        }.addDisposableTo(disposeBag)
         
         
         self.loadingView.center = backView.center
@@ -57,10 +57,16 @@ class LogInViewController: BaseViewController {
     @objc fileprivate func logInBtnClickec(_ sender:UIButton) -> (){
         self.loadingView.startAnimating()
         /// 通过viewmodel发送请求
-        self.viewModel.logIn(self.accountTF.text!, self.verifyCodeTF.text!)
+        
+        self.viewModel.logIn(self.accountTF.text!, self.verifyCodeTF.text!, { result in
+            
+            debugPrint("Finally, \(result.message)")
+            self.loadingView.stopAnimating()
+            self.dismissBtnClicked(self.dismissBtn)
+        })
     }
     
-    /// 布局
+    /// MARK: 布局
     override func updateViewConstraints() {
         
         titleLabel.snp.makeConstraints { (make) in
@@ -100,7 +106,7 @@ class LogInViewController: BaseViewController {
         super.updateViewConstraints()
     }
     
-    /// MARK 懒加载
+    /// MARK: 懒加载
     lazy var dismissBtn:UIButton = {
         let button = UIButton.init(frame: CGRect.init(x: screen_width - 40, y: 10, width: 35, height: 35))
         button.backgroundColor = UIColor.red
